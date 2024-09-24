@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação de Slides</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            height: 100vh; /* Altura total da tela */
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            height: 100%; /* Ocupa toda a altura do contêiner */
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        img {
+            width: 100%; /* Ajusta a largura da imagem ao tamanho do slide */
+            height: auto; /* Mantém a proporção da imagem */
+            max-height: 80%; /* Limita a altura da imagem */
+            object-fit: contain; /* Garante que a imagem mantenha a proporção sem distorção */
+            transition: transform 0.3s ease; /* Transição suave para zoom */
+        }
+
+        img:hover {
+            transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 10px 0 5px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .prev {
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 10px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide active">
+            <img src="./images/image1.jpg" alt="Página 1">
+            <h1>Página 1</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image2.jpg" alt="Página 2">
+            <h1>Página 2</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image3.jpg" alt="Página 3">
+            <h1>Página 3</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image4.jpg" alt="Página 4">
+            <h1>Página 4</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image5.jpg" alt="Página 5">
+            <h1>Página 5</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image6.jpg" alt="Página 6">
+            <h1>Página 6</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image7.jpg" alt="Página 7">
+            <h1>Página 7</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image8.jpg" alt="Página 8">
+            <h1>Página 8</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image9.jpg" alt="Página 9">
+            <h1>Página 9</h1>
+        </div>
+        <div class="slide">
+            <img src="./images/image10.jpg" alt="Página 10">
+            <h1>Página 10</h1>
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function showSlides() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            currentSlide = (currentSlide + n + slides.length) % slides.length; // Wrap around
+            showSlides();
+        }
+
+        // Start the presentation in fullscreen mode
+        document.addEventListener("DOMContentLoaded", () => {
+            document.documentElement.requestFullscreen();
+            showSlides();
+        });
+    </script>
+</body>
+</html>
+
